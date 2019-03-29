@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "708758826420",
+    "firebase_url": "https://onesnsp.firebaseio.com",
+    "project_id": "onesnsp",
+    "storage_bucket": "onesnsp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708758826420:android:59e4c331b3750829",
+        "android_client_info": {
+          "package_name": "com.example.onesns"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708758826420-n0taka4r89ltcoj9mqpu25upc5v06ov8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.onesns",
+            "certificate_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+          }
+        },
+        {
+          "client_id": "708758826420-kctkrk5ldluphgh3bps94fsu15ir49ra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmLCw98X61t1mSdxLpfHcZKPlDle5Qneo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708758826420-kctkrk5ldluphgh3bps94fsu15ir49ra.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
