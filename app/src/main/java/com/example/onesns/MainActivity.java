@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.item1:
                 Toast.makeText(this, "item1 clicked..", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplication(), NewsListViewFragment.class);
+                Intent intent = new Intent(getApplication(), FriendListViewFragment.class);
                 startActivity(intent);
                 break;
             case R.id.item2:
