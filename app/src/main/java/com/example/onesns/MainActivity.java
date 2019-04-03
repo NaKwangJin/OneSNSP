@@ -1,5 +1,6 @@
 package com.example.onesns;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -13,8 +14,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
-
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +31,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         initLayout();
 
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, new MainContentFragment())
+                    .commit();
+        }
+
     }
 
     @Override
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.item1:
                 Toast.makeText(this, "item1 clicked..", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplication(), NewsListViewFragment.class);
+                startActivity(intent);
                 break;
             case R.id.item2:
                 Toast.makeText(this, "item2 clicked..", Toast.LENGTH_SHORT).show();

@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".FriendActivity"
-    >
-
-    <include layout="@layout/toolbar" />
+    tools:context=".MainContentFragment"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/date"
-        android:layout_margin="30dp"
+        android:layout_gravity="center"
+
         android:hint="date"
         android:textSize="50dp"
-        android:layout_gravity="center"
-        />
+        android:layout_marginTop="200dp"
+        android:id="@+id/tv1"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/time"
-        android:hint="time"
-        android:textSize="40dp"
-        android:layout_marginTop="30dp"
+        android:id="@+id/tv2"
         android:layout_gravity="center"
-        />
+        android:layout_marginTop="100dp"
+        android:textSize="40dp"
+        android:hint="time"/>
 
 </LinearLayout>
