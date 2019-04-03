@@ -36,5 +36,14 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        gotoLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(cont,MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 }

@@ -27,13 +27,28 @@
             android:layout_height="50dp"
             android:background="@drawable/logintextbox"
             android:layout_marginBottom="10dp"
-            android:hint="  User ID"/>
+            android:hint="  New Your ID"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/logintextbox"
             android:inputType="textPassword"
-            android:hint="  Password"
+            android:hint="  New Password"
+            android:layout_marginBottom="10dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/logintextbox"
+            android:inputType="textPassword"
+            android:hint="  E-Mail"
+            android:layout_marginBottom="10dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/logintextbox"
+            android:inputType="date"
+            android:hint="  Your BirthDay"
+            android:id="@+id/birthpicker"
             android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
