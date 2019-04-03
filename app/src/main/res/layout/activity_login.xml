@@ -57,6 +57,6 @@
             android:textColor="#FF7FE9"
             android:textStyle="bold"
             android:id="@+id/regbtn"
-            android:textSize="18dp" />
+            android:textSize="20dp" />
     </LinearLayout>
 </LinearLayout>
