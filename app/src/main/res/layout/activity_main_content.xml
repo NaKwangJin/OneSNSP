@@ -7,13 +7,7 @@
     android:orientation="vertical"
     tools:context=".FriendRecyclerView">
 
-    <!--<include layout="@layout/toolbar"/>-->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:src="@drawable/header_theme_pink"
-        android:scaleType="fitXY"
-        android:background="@drawable/mainborder"/>
+    <include layout="@layout/toolbar"/>
 
     <FrameLayout
         android:id="@+id/container"
