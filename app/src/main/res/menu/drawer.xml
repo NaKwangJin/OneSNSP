@@ -3,19 +3,25 @@
     <item
         android:id="@+id/item1"
         android:icon="@mipmap/ic_launcher_round"
-        android:title="item1"
+        android:title="친구목록"
         />
 
     <item
         android:id="@+id/item2"
         android:icon="@mipmap/ic_launcher_round"
-        android:title="item2"
+        android:title="채팅"
         />
 
     <item
         android:id="@+id/item3"
         android:icon="@mipmap/ic_launcher_round"
-        android:title="item3"
+        android:title="친구찾기"
+        />
+
+    <item
+        android:id="@+id/item4"
+        android:icon="@mipmap/ic_launcher_round"
+        android:title="캘린더"
         />
 
 </menu>

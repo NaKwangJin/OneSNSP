@@ -12,37 +12,43 @@ import java.util.List;
 
 public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAdapter.ItemViewHolder> {
 
-    ArrayList<FriendRecyclerItem> mItems;
 
 
-    public FriendRecyclerAdapter(ArrayList<FriendRecyclerItem> mItems) {
-        this.mItems = mItems;
+    private final List<FriendRecyclerItem> mDataList;
+
+    public FriendRecyclerAdapter(List<FriendRecyclerItem> dataList){
+        mDataList = dataList;
     }
 
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_friend_list_view,viewGroup,false);
+        View view =LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.itemcard,viewGroup,false);
 
         return new ItemViewHolder(view);
     }
 
+
+
     @Override
     public void onBindViewHolder(ItemViewHolder itemViewHolder, int i) {
-        itemViewHolder.mNameTv.setText(mItems.get(i).getName());
+        FriendRecyclerItem item = mDataList.get(i);
+        itemViewHolder.contents.setText(item.getContents());
     }
 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mDataList.size();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder{
-        private TextView mNameTv;
+    public static class ItemViewHolder extends RecyclerView.ViewHolder{
+        TextView contents;
+
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            mNameTv = (TextView)itemView.findViewById(R.id.itemNameTv);
+            contents = itemView.findViewById(R.id.contents_text);
+
         }
     }
 }

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
 
 
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.item1:
                 Toast.makeText(this, "item1 clicked..", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplication(), FriendListViewFragment.class);
-                startActivity(intent);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, new FriendRecyclerView())
+                            .commit();
                 break;
             case R.id.item2:
                 Toast.makeText(this, "item2 clicked..", Toast.LENGTH_SHORT).show();
@@ -53,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item3:
                 Toast.makeText(this, "item3 clicked..", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.item4:
+                Toast.makeText(this, "item4 clicked..", Toast.LENGTH_SHORT).show();
+                break;
+
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return false;

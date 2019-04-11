@@ -2,13 +2,17 @@ package com.example.onesns;
 
 public class FriendRecyclerItem {
 
-    private String name;
+    private String contents;
 
-    public FriendRecyclerItem(String name) {
-        this.name = name;
+    public FriendRecyclerItem(String contents) {
+        this.contents = contents;
     }
 
-    public String getName() {
-        return name;
+    public String getContents() {
+        return contents;
+    }
+
+    public void setContents(String contents) {
+        this.contents = contents;
     }
 }
