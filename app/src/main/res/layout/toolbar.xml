@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:minHeight="?attr/actionBarSize"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    android:background="#ffbefc"
+    android:background="@drawable/header_theme_pink"
     />
 
 

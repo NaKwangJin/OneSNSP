@@ -44,19 +44,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
-                Toast.makeText(this, "item1 clicked..", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "item1 clicked..", Toast.LENGTH_SHORT).show();
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container, new FriendRecyclerView())
                             .commit();
                 break;
             case R.id.item2:
-                Toast.makeText(this, "item2 clicked..", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "item2 clicked..", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container,new ChatListFragment())
+                        .commit();
                 break;
             case R.id.item3:
                 Toast.makeText(this, "item3 clicked..", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item4:
-                Toast.makeText(this, "item4 clicked..", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "item4 clicked..", Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, new CalenderActivity())
                         .commit();
