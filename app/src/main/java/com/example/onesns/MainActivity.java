@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.item4:
                 Toast.makeText(this, "item4 clicked..", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new CalenderActivity())
+                        .commit();
                 break;
 
         }
