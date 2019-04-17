@@ -55,8 +55,10 @@ public class LoginActivity extends AppCompatActivity {
                 restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
                 restmng.setMethod("GET");
                 restmng.putArgument("mode","login");
-                restmng.putArgument("id",loginIDBox.getText().toString());
-                restmng.putArgument("pw",loginPWBox.getText().toString());
+                //restmng.putArgument("id",loginIDBox.getText().toString());
+                restmng.putArgument("id",EncryptionEncoder.encryptBase64(loginIDBox.getText().toString()));
+                //restmng.putArgument("pw",loginPWBox.getText().toString());
+                restmng.putArgument("pw",EncryptionEncoder.encryptMD5(loginPWBox.getText().toString()));
 
                 restmng.execute();
             }

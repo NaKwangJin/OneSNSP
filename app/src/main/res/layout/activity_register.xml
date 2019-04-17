@@ -27,19 +27,22 @@
             android:layout_height="50dp"
             android:background="@drawable/logintextbox"
             android:layout_marginBottom="10dp"
-            android:hint="  New Your ID"/>
+            android:hint="  New Your ID"
+            android:id="@+id/newIDBox"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/logintextbox"
             android:inputType="textPassword"
             android:hint="  New Password"
+            android:id="@+id/newPWBox"
             android:layout_marginBottom="10dp"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/logintextbox"
             android:hint="  E-Mail"
+            android:id="@+id/newEMailBox"
             android:layout_marginBottom="10dp"/>
         <EditText
             android:layout_width="match_parent"
@@ -64,7 +67,8 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:layout_marginRight="5dp"
-                android:text="Ok"/>
+                android:text="Ok"
+                android:id="@+id/regOkButton"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -74,7 +78,8 @@
                 android:textColor="#FF7FE9"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:text="Cancel"/>
+                android:text="Cancel"
+                android:id="@+id/regCancelButton"/>
         </LinearLayout>
 
     </LinearLayout>
