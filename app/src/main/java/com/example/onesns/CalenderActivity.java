@@ -29,7 +29,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-public class CalenderActivity extends Fragment {
+public class CalenderActivity extends Fragment{
 
     String time, kcal, menu;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
@@ -86,11 +86,15 @@ public class CalenderActivity extends Fragment {
                 String shot_Day = Year + "," + Month + "," + Day;
 
                 Log.i("shot_Day test", shot_Day + "");
+                CalenderDialog calenderDialog = new CalenderDialog(getActivity(), "name");
+                calenderDialog.show();
                 materialCalendarView.clearSelection();
 
             }
         });
     }
+
+
 
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
 
@@ -135,6 +139,7 @@ public class CalenderActivity extends Fragment {
 
 
             materialCalendarView.addDecorator(new EventDecorator(Color.GREEN, calendarDays, getActivity()));
+
         }
 
     }

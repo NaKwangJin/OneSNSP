@@ -3,10 +3,13 @@ package com.example.onesns.decorators;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 
+import com.example.onesns.CalenderDialog;
+import com.example.onesns.NewChatterDialog;
 import com.example.onesns.R;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -20,6 +23,9 @@ public class EventDecorator implements DayViewDecorator {
         drawable = context.getResources().getDrawable(R.drawable.more);
         this.color = color;
         this.dates = new HashSet<>(dates);
+
+
+
     }
 
     @Override

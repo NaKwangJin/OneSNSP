@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/dialogstyle"
+    android:gravity="center"
+    android:paddingVertical="30dp"
+    android:paddingHorizontal="10dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/calenderdialog"
+        android:hint="일정을 추가하세요." />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/loginbuttontheme"
+        android:layout_marginBottom="10dp"
+        android:text="일정 추가"/>
+    <Button
+        android:id="@+id/calendarCancle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/loginbuttontheme"
+        android:text="취소"/>
+</LinearLayout>
