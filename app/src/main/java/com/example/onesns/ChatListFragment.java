@@ -1,6 +1,7 @@
 package com.example.onesns;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,9 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class ChatListFragment extends Fragment {
     private Button chatterAddBtn;
+    private ListView chatterList;
+    private ChatterListAdapter chatterListAdapter;
 
     public ChatListFragment() {
         // Required empty public constructor
@@ -28,6 +33,7 @@ public class ChatListFragment extends Fragment {
 
     private void InitComponents(){
         this.chatterAddBtn = (Button)getView().findViewById(R.id.addChatterButton);
+        this.chatterList = (ListView)getView().findViewById(R.id.chatterList);
     }
 
     @Override
@@ -35,11 +41,27 @@ public class ChatListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         InitComponents();
 
+        chatterListAdapter = new ChatterListAdapter( getActivity() );
+        chatterList.setAdapter(chatterListAdapter);
+
         this.chatterAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewChatterDialog chatterAddDialog = new NewChatterDialog( getActivity(),"New Chatter");
+                final NewChatterDialog chatterAddDialog = new NewChatterDialog( getActivity(),"New Chatter");
                 chatterAddDialog.show();
+
+                chatterAddDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        // DevYCY: If user clicked 'Cancel' Dialog Button...
+                        if( chatterAddDialog.isCancelDismiss ){
+                            return;
+                        }else{
+                            chatterListAdapter.addItem(new ChatterListItem( chatterAddDialog.userNickname,chatterAddDialog.profileID,R.drawable.ic_launcher_foreground));
+                            chatterListAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
             }
         });
     }
