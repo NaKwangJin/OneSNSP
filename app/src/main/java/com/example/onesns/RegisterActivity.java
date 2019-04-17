@@ -11,12 +11,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
+    private EditText newIDText;
+    private EditText newPWText;
+    private EditText newEmailText;
     private EditText birthPicker;
     private Button regOkBtn;
     private Button regCancelBtn;
     private Context cont;
 
     private void InitComponent(){
+        newIDText = (EditText)findViewById(R.id.newIDBox);
+        newPWText = (EditText)findViewById(R.id.newPWBox);
+        newEmailText = (EditText)findViewById(R.id.newEMailBox);
         birthPicker = (EditText)findViewById(R.id.birthpicker);
         regOkBtn = (Button)findViewById(R.id.regOkButton);
         regCancelBtn = (Button)findViewById(R.id.regCancelButton);
@@ -51,10 +57,12 @@ public class RegisterActivity extends AppCompatActivity {
                 restmng.setMethod("GET");
                 restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
                 restmng.putArgument("mode","reg");
-                restmng.putArgument("id","");
-                restmng.putArgument("pw","");
-                restmng.putArgument("email","");
-                restmng.putArgument("bd","");
+                restmng.putArgument("id",EncryptionEncoder.encryptBase64( newIDText.getText().toString()));
+                restmng.putArgument("pw",EncryptionEncoder.encryptMD5(newPWText.getText().toString()));
+                restmng.putArgument("email",EncryptionEncoder.encryptBase64(newEmailText.getText().toString()));
+                restmng.putArgument("bd",EncryptionEncoder.encryptBase64(birthPicker.getText().toString()));
+
+                restmng.execute();
                 finish();
             }
         });
