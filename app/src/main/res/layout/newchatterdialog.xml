@@ -8,18 +8,21 @@
     android:paddingVertical="30dp"
     android:paddingHorizontal="10dp">
         <EditText
+            android:id="@+id/nicknameInput"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:background="@drawable/logintextbox"
             android:layout_marginBottom="10dp"
             android:hint="  닉네임"/>
         <EditText
+            android:id="@+id/profileIDInput"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:background="@drawable/logintextbox"
             android:hint="  프로필 ID"
             android:layout_marginBottom="10dp"/>
         <Button
+            android:id="@+id/newChatterAddButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/loginbuttontheme"
