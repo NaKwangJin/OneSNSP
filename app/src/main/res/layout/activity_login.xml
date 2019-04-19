@@ -20,7 +20,7 @@
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:paddingTop="160dp"
-        android:paddingBottom="150dp">
+        android:paddingBottom="120dp">
 
         <EditText
             android:id="@+id/userLoginIDBox"
@@ -59,6 +59,14 @@
             android:textColor="#FF7FE9"
             android:textStyle="bold"
             android:id="@+id/regbtn"
+            android:layout_marginBottom="10dp"
             android:textSize="20dp" />
+
+        <ImageButton
+            android:id="@+id/btn_kakao_login"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/kakao_account_login_btn_medium_wide"
+            android:scaleType="fitXY" />
     </LinearLayout>
 </LinearLayout>
