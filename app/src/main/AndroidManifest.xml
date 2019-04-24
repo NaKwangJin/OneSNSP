@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".dialog.LogoutDialog"></activity>
-        <!-- 카카오톡 메타데이터 -->
+        <activity android:name=".FileBrowserActivity"></activity>
+        <activity android:name=".dialog.LogoutDialog" /> <!-- 카카오톡 메타데이터 -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
