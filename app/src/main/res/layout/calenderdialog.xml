@@ -9,6 +9,7 @@
     android:paddingHorizontal="10dp">
 
     <EditText
+        android:id="@+id/calcAddText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -16,6 +17,7 @@
         android:hint="일정을 추가하세요." />
 
     <Button
+        android:id="@+id/calcAddBtn"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"

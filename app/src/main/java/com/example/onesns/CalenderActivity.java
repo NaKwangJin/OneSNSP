@@ -77,14 +77,14 @@ public class CalenderActivity extends Fragment{
                 int Month = date.getMonth() + 1;
                 int Day = date.getDay();
 
-                Log.i("Year test", Year + "");
+                /*Log.i("Year test", Year + "");
                 Log.i("Month test", Month + "");
-                Log.i("Day test", Day + "");
+                Log.i("Day test", Day + "");*/
 
-                String shot_Day = Year + "," + Month + "," + Day;
+                String shot_Day = Year + "-" + Month + "-" + Day;
 
-                Log.i("shot_Day test", shot_Day + "");
-                CalenderDialog calenderDialog = new CalenderDialog(getActivity(), "name");
+                //Log.i("shot_Day test", shot_Day + "");
+                CalenderDialog calenderDialog = new CalenderDialog(getActivity(), "name",shot_Day);
                 calenderDialog.show();
                 materialCalendarView.clearSelection();
 
