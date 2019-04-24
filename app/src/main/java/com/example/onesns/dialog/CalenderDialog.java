@@ -1,4 +1,4 @@
-package com.example.onesns;
+package com.example.onesns.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.onesns.R;
 
 public class CalenderDialog extends Dialog {
     private String name;

@@ -1,24 +1,22 @@
 package com.example.onesns;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.onesns.decorators.EventDecorator;
 import com.example.onesns.decorators.OneDayDecorator;
 import com.example.onesns.decorators.SaturdayDecorator;
 import com.example.onesns.decorators.SundayDecorator;
+import com.example.onesns.dialog.CalenderDialog;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -138,7 +136,7 @@ public class CalenderActivity extends Fragment{
             super.onPostExecute(calendarDays);
 
 
-            materialCalendarView.addDecorator(new EventDecorator(Color.GREEN, calendarDays, getActivity()));
+            materialCalendarView.addDecorator(new EventDecorator(Color.rgb(255,192,203), calendarDays, getActivity()));
 
         }
 

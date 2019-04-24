@@ -2,14 +2,8 @@ package com.example.onesns;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.media.Image;
-import android.media.MediaCas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -23,40 +17,26 @@ import android.widget.Toast;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
 
-import java.security.MessageDigest;
-
 public class LoginActivity extends AppCompatActivity {
     private Button gotoRegisterBtn;
     private Button gotoLoginBtn;
-    private ImageButton kakaoLoginBtn;
     private EditText loginIDBox;
     private EditText loginPWBox;
     private Context cont;
+    private ImageButton kakaoLoginBtn;
 
     private void InitComponents(){
         gotoRegisterBtn = (Button)findViewById(R.id.regbtn);
         gotoLoginBtn = (Button)findViewById(R.id.loginbtn);
+        loginIDBox = (EditText)findViewById(R.id.LoginIDBox);
+        loginPWBox = (EditText)findViewById(R.id.LoginPWBox);
         kakaoLoginBtn = (ImageButton)findViewById(R.id.btn_kakao_login);
-        loginIDBox = (EditText)findViewById(R.id.userLoginIDBox);
-        loginPWBox = (EditText)findViewById(R.id.userLoginPWBox);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        // Get App Key Hash For Debugging //
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo("com.example.onesns", PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.e("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         cont = this;
 
@@ -98,5 +78,6 @@ public class LoginActivity extends AppCompatActivity {
                 session.open(AuthType.KAKAO_LOGIN_ALL,LoginActivity.this);
             }
         });
+
     }
 }

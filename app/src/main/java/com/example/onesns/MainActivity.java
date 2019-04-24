@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import com.example.onesns.dialog.LogoutDialog;
 import com.kakao.auth.Session;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
@@ -115,21 +116,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher);
 
-        logoutBtn = (Button)toolbar.findViewById(R.id.logoutbtn);
+        logoutBtn = (Button)toolbar.findViewById(R.id.logout_btn);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Logout KaKaO Account //
-                // Check if KaKaO Session is alive //
-                if(Session.getCurrentSession().checkAndImplicitOpen()){
-                    UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
-                        @Override
-                        public void onCompleteLogout() {
-                            Toast.makeText(cont,"로그아웃 되었습니다.",Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    });
-                }
+                LogoutDialog logoutDialog = new LogoutDialog(cont, "");
+                logoutDialog.show();
             }
         });
 

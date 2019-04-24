@@ -13,7 +13,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RESTManager extends AsyncTask<Void,Void,String> {
+public class
+RESTManager extends AsyncTask<Void,Void,String> {
     private Map<String,String> keyvalue = new HashMap<String,String>();
     private String urladdr = "";
     private String method = "";

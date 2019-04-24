@@ -23,14 +23,14 @@
         android:paddingBottom="120dp">
 
         <EditText
-            android:id="@+id/userLoginIDBox"
+            android:id="@+id/LoginIDBox"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/logintextbox"
             android:layout_marginBottom="10dp"
             android:hint="  User ID"/>
         <EditText
-            android:id="@+id/userLoginPWBox"
+            android:id="@+id/LoginPWBox"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/logintextbox"

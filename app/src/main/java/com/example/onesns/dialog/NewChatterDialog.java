@@ -1,4 +1,4 @@
-package com.example.onesns;
+package com.example.onesns.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.onesns.R;
 
 public class NewChatterDialog extends Dialog {
     private String name;

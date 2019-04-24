@@ -16,6 +16,17 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
 
     private final List<FriendRecyclerItem> mDataList;
 
+    public interface MyRecyclerViewClickListener{
+        void onItemClicked(int position);
+
+    }
+
+    private MyRecyclerViewClickListener mListener;
+
+    public void setOnclickListener(MyRecyclerViewClickListener listener){
+        mListener = listener;
+    }
+
     public FriendRecyclerAdapter(List<FriendRecyclerItem> dataList){
         mDataList = dataList;
     }
