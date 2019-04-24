@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
 
+import java.util.Map;
+
 public class LoginActivity extends AppCompatActivity {
     private Button gotoRegisterBtn;
     private Button gotoLoginBtn;
