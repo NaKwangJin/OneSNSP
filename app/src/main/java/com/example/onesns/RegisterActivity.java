@@ -2,6 +2,7 @@ package com.example.onesns;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText newPWText;
     private EditText newEmailText;
     private EditText birthPicker;
+    private EditText profilePhotoPicker;
     private Button regOkBtn;
     private Button regCancelBtn;
     private Context cont;
@@ -24,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         newPWText = (EditText)findViewById(R.id.newPWBox);
         newEmailText = (EditText)findViewById(R.id.newEMailBox);
         birthPicker = (EditText)findViewById(R.id.birthpicker);
+        profilePhotoPicker = (EditText)findViewById(R.id.profilePhotoInput);
         regOkBtn = (Button)findViewById(R.id.regOkButton);
         regCancelBtn = (Button)findViewById(R.id.regCancelButton);
     }
@@ -47,6 +50,15 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 },1900,1,10);
                 dateDialog.show();
+            }
+        });
+
+        profilePhotoPicker.setFocusableInTouchMode(false);
+        profilePhotoPicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(cont,FileBrowserActivity.class);
+                startActivity(i);
             }
         });
 

@@ -21,6 +21,10 @@ public class FileDialogAdapter extends BaseAdapter {
         this.lists.add( item );
     }
 
+    public void clearAllItem(){
+        lists.clear();
+    }
+
     @Override
     public int getCount() {
         return lists.size();
@@ -49,6 +53,10 @@ public class FileDialogAdapter extends BaseAdapter {
         filenameView.setText( item.getFilename());
         filetypeView.setText( item.getFiletype());
         filesizeView.setText( String.valueOf( item.getFilesize()));
+
+        if( item.getFilename() == "/" ){
+            filesizeView.setText("");
+        }
 
         return view;
     }

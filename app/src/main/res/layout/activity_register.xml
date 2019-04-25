@@ -52,6 +52,13 @@
             android:hint="  Your BirthDay"
             android:id="@+id/birthpicker"
             android:layout_marginBottom="10dp"/>
+        <EditText
+            android:id="@+id/profilePhotoInput"
+            android:hint="  Profile Photo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/logintextbox"
+            android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
