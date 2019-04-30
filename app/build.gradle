@@ -40,5 +40,7 @@ dependencies {
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt',
             version: project.KAKAO_SDK_VERSION
+
+    implementation 'com.facebook.android:facebook-android-sdk:4.+'
 }
 apply plugin: 'com.google.gms.google-services'
