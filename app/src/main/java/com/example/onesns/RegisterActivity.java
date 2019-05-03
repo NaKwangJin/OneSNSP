@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         birthPicker.setText(year + "/" + month + "/" + dayOfMonth);
                     }
-                },1900,1,10);
+                },2018,1,10);
                 dateDialog.show();
             }
         });
@@ -69,13 +69,19 @@ public class RegisterActivity extends AppCompatActivity {
                 restmng.setMethod("GET");
                 restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
                 restmng.putArgument("mode","reg");
-                restmng.putArgument("id",EncryptionEncoder.encryptBase64( newIDText.getText().toString()));
-                restmng.putArgument("pw",EncryptionEncoder.encryptMD5(newPWText.getText().toString()));
-                restmng.putArgument("email",EncryptionEncoder.encryptBase64(newEmailText.getText().toString()));
-                restmng.putArgument("bd",EncryptionEncoder.encryptBase64(birthPicker.getText().toString()));
 
-                restmng.execute();
-                finish();
+                if(newIDText.getText().toString().equals("") || newPWText.getText().toString().equals("") ||
+                        newEmailText.getText().toString().equals("")){
+                    Toast.makeText(cont, "필수정보를 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }else {
+                    restmng.putArgument("id", EncryptionEncoder.encryptBase64(newIDText.getText().toString()));
+                    restmng.putArgument("pw", EncryptionEncoder.encryptMD5(newPWText.getText().toString()));
+                    restmng.putArgument("email", EncryptionEncoder.encryptBase64(newEmailText.getText().toString()));
+                    restmng.putArgument("bd", EncryptionEncoder.encryptBase64(birthPicker.getText().toString()));
+
+                    restmng.execute();
+                    finish();
+                }
             }
         });
 
