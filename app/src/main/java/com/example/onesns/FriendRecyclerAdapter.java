@@ -45,6 +45,17 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
     public void onBindViewHolder(ItemViewHolder itemViewHolder, int i) {
         FriendRecyclerItem item = mDataList.get(i);
         itemViewHolder.contents.setText(item.getContents());
+
+        if(mListener != null){
+            final int pos = i;
+            itemViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onItemClicked(pos);
+                }
+            });
+
+        }
     }
 
 

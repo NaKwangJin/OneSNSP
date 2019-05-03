@@ -12,11 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendRecyclerView extends Fragment {
+public class FriendRecyclerView extends Fragment implements FriendRecyclerAdapter.MyRecyclerViewClickListener {
 
 
 
@@ -46,5 +47,16 @@ public class FriendRecyclerView extends Fragment {
 
         FriendRecyclerAdapter adapter = new FriendRecyclerAdapter(dataList);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnclickListener(this);
+
+    }
+
+
+    @Override
+    public void onItemClicked(int position) {
+
+        Toast.makeText(getActivity(), ""+position, Toast.LENGTH_SHORT).show();
+
     }
 }

@@ -22,7 +22,7 @@
         android:orientation="vertical"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:paddingTop="140dp"
+        android:paddingTop="130dp"
         android:paddingBottom="50dp">
 
 
