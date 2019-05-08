@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.onesns.dialog.FriendClickDialog;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class FriendRecyclerView extends Fragment implements FriendRecyclerAdapte
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) { //activity onCreated부분
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView =(RecyclerView)view.findViewById(R.id.recyclerView);
 
@@ -54,7 +56,10 @@ public class FriendRecyclerView extends Fragment implements FriendRecyclerAdapte
 
 
     @Override
-    public void onItemClicked(int position) {
+    public void onItemClicked(int position) { // 친구목록에서 아이템 클릭시 이벤트 처리
+        String content = (position+1)+"";
+        FriendClickDialog friendClickDialog = new FriendClickDialog(getActivity(), "content", content);
+        friendClickDialog.show();
 
         Toast.makeText(getActivity(), ""+position, Toast.LENGTH_SHORT).show();
 
