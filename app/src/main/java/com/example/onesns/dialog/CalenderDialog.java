@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.onesns.EncryptionEncoder;
 import com.example.onesns.R;
 import com.example.onesns.RESTManager;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 public class CalenderDialog extends Dialog {
     private String name;
@@ -20,8 +20,10 @@ public class CalenderDialog extends Dialog {
 
     private Button calcAddBtn;
     private EditText calcAddText;
-    private Button cancelBtn;
+    private Button calclook;
     private String passedDate;
+    private Button cancelBtn;
+
 
     public CalenderDialog(Context cont, String name,String date){
         super(cont);
@@ -33,13 +35,14 @@ public class CalenderDialog extends Dialog {
     private void InitComponents(){
         this.calcAddBtn = (Button)findViewById(R.id.calcAddBtn);
         this.calcAddText = (EditText)findViewById(R.id.calcAddText);
-        this.cancelBtn = (Button)findViewById(R.id.calendarCancle);
+        this.calclook = (Button)findViewById(R.id.calendarCancle);
+        this.cancelBtn = (Button)findViewById(R.id.cancel_btn);
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.calenderdialog);
 
         InitComponents();
@@ -47,7 +50,15 @@ public class CalenderDialog extends Dialog {
         this.cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(cont, "cancelClick", Toast.LENGTH_SHORT).show();
                 dismiss();
+            }
+        });
+
+        this.calclook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(cont, "일정보기", Toast.LENGTH_SHORT).show();
             }
         });
         this.calcAddBtn.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +75,7 @@ public class CalenderDialog extends Dialog {
                 manager.putArgument("ctodo",calcText);
 
                 manager.execute();
+                Toast.makeText(cont, "일정추가", Toast.LENGTH_SHORT).show();
 
                 dismiss();
             }

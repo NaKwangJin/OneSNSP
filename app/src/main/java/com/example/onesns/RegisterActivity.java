@@ -78,8 +78,8 @@ public class RegisterActivity extends AppCompatActivity {
                     restmng.putArgument("pw", EncryptionEncoder.encryptMD5(newPWText.getText().toString()));
                     restmng.putArgument("email", EncryptionEncoder.encryptBase64(newEmailText.getText().toString()));
                     restmng.putArgument("bd", EncryptionEncoder.encryptBase64(birthPicker.getText().toString()));
-
                     restmng.execute();
+                    Toast.makeText(cont, "회원가입이 완료 되었습니다.", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
