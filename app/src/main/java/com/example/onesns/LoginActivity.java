@@ -81,9 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         gotoLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent i = new Intent(cont,MainActivity.class);
-                startActivity(i);
-                finish();*/
+
                 // Using REST API Manager For Using User Login DB//
                 RESTManager restmng = new RESTManager(cont);
                 restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
@@ -93,8 +91,10 @@ public class LoginActivity extends AppCompatActivity {
                 restmng.putArgument("id",EncryptionEncoder.encryptBase64(loginIDBox.getText().toString()));
                 //restmng.putArgument("pw",loginPWBox.getText().toString());
                 restmng.putArgument("pw",EncryptionEncoder.encryptMD5(loginPWBox.getText().toString()));
-
                 restmng.execute();
+//                Intent i = new Intent(cont,MainActivity.class);
+//                startActivity(i);
+//                finish();
             }
         });
 

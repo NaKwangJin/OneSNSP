@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import java.util.Calendar;
@@ -68,7 +69,7 @@ public class MainContentFragment extends Fragment {
         this.linear2 = view.findViewById(R.id.l_button_2);
         this.linear3 = view.findViewById(R.id.l_button_3);
         this.linear4 = view.findViewById(R.id.l_button_4);
-        this.linear5 = view.findViewById(R.id.l_button_5);
+        //this.linear5 = view.findViewById(R.id.l_button_5);
 
         // calendar 에서 받아왔음
         final Calendar c = Calendar.getInstance();
@@ -87,7 +88,6 @@ public class MainContentFragment extends Fragment {
             }
         };
         mHandler.postDelayed(r, 1000);
-
         layoutClickSet();
     }
 
@@ -139,7 +139,7 @@ public class MainContentFragment extends Fragment {
         linear3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(this, "item3 clicked..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "item3 clicked..", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -152,12 +152,12 @@ public class MainContentFragment extends Fragment {
             }
         });
 
-        linear5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO
-            }
-        });
+//        linear5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // TODO
+//            }
+//        });
     }
 
     private static String pad(int c) {
