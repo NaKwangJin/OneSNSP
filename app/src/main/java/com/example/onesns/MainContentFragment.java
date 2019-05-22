@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -32,6 +33,8 @@ public class MainContentFragment extends Fragment {
     private int mHour;
     private int mMinute;
     private int mSecond;
+
+    LinearLayout linear1, linear2, linear3, linear4, linear5;
 
     static final int DATE_DIALOG_ID = 0;
     static final int TIME_DIALOG_ID = 0;
@@ -61,6 +64,11 @@ public class MainContentFragment extends Fragment {
         this.time_display = (TextView)view.findViewById(R.id.tv2);
         this.date_display = (TextView) view.findViewById(R.id.tv1);
 
+        this.linear1 = view.findViewById(R.id.l_button_1);
+        this.linear2 = view.findViewById(R.id.l_button_2);
+        this.linear3 = view.findViewById(R.id.l_button_3);
+        this.linear4 = view.findViewById(R.id.l_button_4);
+        this.linear5 = view.findViewById(R.id.l_button_5);
 
         // calendar 에서 받아왔음
         final Calendar c = Calendar.getInstance();
@@ -79,6 +87,8 @@ public class MainContentFragment extends Fragment {
             }
         };
         mHandler.postDelayed(r, 1000);
+
+        layoutClickSet();
     }
 
     // 날짜와 시간 업데이트
@@ -105,6 +115,49 @@ public class MainContentFragment extends Fragment {
                         .append(pad(mSecond)));
         // 1초당 업데이트
         mHandler.postDelayed(r, 1000);
+    }
+
+    private void layoutClickSet() {
+        linear1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new FriendRecyclerView())
+                        .commit();
+            }
+        });
+
+        linear2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new ChatListFragment())
+                        .commit();
+            }
+        });
+
+        linear3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(this, "item3 clicked..", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        linear4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new CalenderActivity())
+                        .commit();
+            }
+        });
+
+        linear5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO
+            }
+        });
     }
 
     private static String pad(int c) {

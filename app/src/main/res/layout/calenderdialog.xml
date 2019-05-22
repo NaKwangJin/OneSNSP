@@ -4,9 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingHorizontal="2dp">
+    android:background="@drawable/dialogstyle"
+    android:gravity="center"
+    android:paddingVertical="30dp"
+    android:paddingHorizontal="10dp">
 
-    <include layout="@layout/toolbar2"/>
+
 
 
     <EditText
@@ -31,5 +34,5 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/loginbuttontheme"
-        android:text="일정 보기"/>
+        android:text="취소"/>
 </LinearLayout>

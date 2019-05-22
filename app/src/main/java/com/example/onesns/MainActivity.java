@@ -2,7 +2,6 @@ package com.example.onesns;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -16,7 +15,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
@@ -32,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle drawerToggle;
     Toolbar toolbar;
 
-    private TextView userInfoNameView;
-    private TextView userInfoEmailView;
     private Button logoutBtn;
     private Context cont;
 
@@ -114,8 +111,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void initLayout() {
 
-
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -143,14 +138,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(drawerToggle);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Get HeaderView from Nav //
-        View navView = navigationView.getHeaderView(0);
-        userInfoNameView = navView.findViewById(R.id.userInfoName);
-        userInfoEmailView = navView.findViewById(R.id.userInfoEmail);
-
-        SharedPreferences sp = cont.getSharedPreferences("UserSession",MODE_PRIVATE);
-        userInfoNameView.setText(sp.getString("UID","{UNKNOWN}"));
-        userInfoEmailView.setText(sp.getString("UEMAIL","{UNKNOWN}"));
     }
 
     @Override

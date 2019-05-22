@@ -19,7 +19,7 @@
         android:orientation="vertical"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:paddingTop="140dp"
+        android:paddingTop="160dp"
         android:paddingBottom="80dp">
 
         <EditText
