@@ -10,9 +10,36 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
         android:id="@+id/recyclerView"
         tools:listitem="@layout/itemcard"
         />
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="match_parent"
+            android:id="@+id/search_friend"
+            android:hint="친구 검색"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/search_friend_btn"
+            android:src="@drawable/searchbtn"
+            />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

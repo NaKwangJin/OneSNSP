@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".dialog.FriendClickDialog"></activity>
+        <activity android:name=".calendarContentsList.CalenderContents"></activity>
+        <activity android:name=".dialog.FriendClickDialog" />
         <activity android:name=".FileBrowserActivity" />
         <activity android:name=".dialog.LogoutDialog" /> <!-- 카카오톡 메타데이터 -->
         <meta-data
