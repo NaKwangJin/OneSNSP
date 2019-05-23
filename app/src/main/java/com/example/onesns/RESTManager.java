@@ -7,7 +7,9 @@ import android.os.Debug;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
@@ -20,6 +22,8 @@ RESTManager extends AsyncTask<Void,Void,String> {
     private String method = "";
     private String output = "";
     private Context cont;
+
+    private HttpURLConnection httpConn = null;
 
     public RESTManager( Context cont ){
         this.cont = cont;
@@ -34,9 +38,6 @@ RESTManager extends AsyncTask<Void,Void,String> {
     public void putArgument( String name,String var ){
         this.keyvalue.put( name,var );
     }
-    public String getResult(){
-        return this.output;
-    }
 
     @Override
     protected String doInBackground(Void... voids) {
@@ -47,24 +48,26 @@ RESTManager extends AsyncTask<Void,Void,String> {
             }
 
             URL urlconn = new URL( urladdr );
-            HttpURLConnection httpConn = (HttpURLConnection)urlconn.openConnection();
+            httpConn = (HttpURLConnection)urlconn.openConnection();
             httpConn.setRequestMethod( this.method );
             httpConn.setDoInput(true);
             httpConn.setDoOutput(true);
 
             InputStream is = httpConn.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
 
             StringBuilder builder = new StringBuilder();
-            int data = 0;
-
-            while((data = is.read()) != -1){
-                builder.append((char)data);
+            String line = "";
+            while((line = br.readLine())!=null){
+                builder.append(line);
             }
-
             output = builder.toString();
-            httpConn.disconnect();
         }catch(Exception e){
             e.printStackTrace();
+        }finally {
+            if( httpConn != null ){
+                httpConn.disconnect();
+            }
         }
         return output;
     }
@@ -72,7 +75,7 @@ RESTManager extends AsyncTask<Void,Void,String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-
+        RESTGlobal.result = s;
         // Check if this ID is our member or not //
         if( s.contains("\"exists\":false") ){
             Toast.makeText(cont,"회원이 아닙니다.",Toast.LENGTH_LONG).show();

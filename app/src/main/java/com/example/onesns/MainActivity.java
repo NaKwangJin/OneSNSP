@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.item3:
-                Toast.makeText(this, "item3 clicked..", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "item3 clicked..", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,new FindFriendFragment()).commit();
                 break;
             case R.id.item4:
                 // Toast.makeText(this, "item4 clicked..", Toast.LENGTH_SHORT).show();
