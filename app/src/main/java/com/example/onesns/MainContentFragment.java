@@ -139,7 +139,9 @@ public class MainContentFragment extends Fragment {
         linear3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Toast.makeText(getActivity(), "item3 clicked..", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new FindFriendFragment())
+                        .commit();
             }
         });
 

@@ -6,14 +6,17 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.onesns.EncryptionEncoder;
+import com.example.onesns.MainContentFragment;
 import com.example.onesns.R;
 import com.example.onesns.RESTManager;
+
 import com.example.onesns.calendarContentsList.CalenderContents;
 
 public class CalenderDialog extends Dialog {
@@ -26,6 +29,7 @@ public class CalenderDialog extends Dialog {
     private Button calclook;
     private String passedDate;
     private Button cancelBtn;
+
 
 
     public CalenderDialog(Context cont, String name, String date) {
@@ -62,7 +66,6 @@ public class CalenderDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 Toast.makeText(cont, "일정보기", Toast.LENGTH_SHORT).show();
-
                 intent = new Intent(cont, CalenderContents.class);
                 cont.startActivity(intent);
 
