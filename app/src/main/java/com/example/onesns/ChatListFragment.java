@@ -17,7 +17,7 @@ import com.example.onesns.dialog.NewChatterDialog;
 
 import java.util.Map;
 
-public class ChatListFragment extends Fragment {
+public class ChatListFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
     private Button chatterAddBtn;
     private ListView chatterList;
     private ChatterListAdapter chatterListAdapter;
@@ -38,6 +38,7 @@ public class ChatListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        ((MainActivity)context).setOnKeyBackPressedListener(this);
         this.cont = context;
     }
 
@@ -74,5 +75,12 @@ public class ChatListFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new ChatRoomFragment()).commit();
             }
         });
+    }
+
+    @Override
+    public void onBackKey() {
+        MainActivity activity = (MainActivity) getActivity();
+        activity.setOnKeyBackPressedListener(null);
+        activity.onBackPressed();
     }
 }

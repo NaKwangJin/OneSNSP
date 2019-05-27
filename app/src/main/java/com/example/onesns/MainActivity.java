@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.main_menu:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, new MainContentFragment())
+                        .addToBackStack(null)
                         .commit();
                 break;
 
@@ -68,22 +69,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //Toast.makeText(this, "item1 clicked..", Toast.LENGTH_SHORT).show();
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container, new FriendRecyclerView())
+                            .addToBackStack(null)
                             .commit();
                 break;
             case R.id.item2:
                 //Toast.makeText(this, "item2 clicked..", Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container,new ChatListFragment())
+                        .addToBackStack(null)
                         .commit();
                 break;
             case R.id.item3:
                 //Toast.makeText(this, "item3 clicked..", Toast.LENGTH_SHORT).show();
-                getSupportFragmentManager().beginTransaction().replace(R.id.container,new FindFriendFragment()).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container,new FindFriendFragment())
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case R.id.item4:
                 // Toast.makeText(this, "item4 clicked..", Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, new CalenderActivity())
+                        .addToBackStack(null)
                         .commit();
                 break;
 
@@ -149,12 +156,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public interface onKeyBackPressedListener {
+        void onBackKey();
+    }
+
+    private onKeyBackPressedListener mOnKeyBackPressedListener;
+
+    public void setOnKeyBackPressedListener(onKeyBackPressedListener listener) {
+        mOnKeyBackPressedListener = listener;
+    }
+
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
+        if (mOnKeyBackPressedListener != null) {
+            mOnKeyBackPressedListener.onBackKey();
         } else {
-            super.onBackPressed();
+            if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                Toast.makeText(this, "종료하려면 한번 더 누르세요", Toast.LENGTH_SHORT);
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 }

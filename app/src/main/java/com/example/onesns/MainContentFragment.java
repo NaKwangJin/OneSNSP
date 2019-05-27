@@ -1,6 +1,7 @@
 package com.example.onesns;
 
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +24,7 @@ import java.util.Calendar;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainContentFragment extends Fragment {
+public class MainContentFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
     private android.widget.TextView date_display;
     private android.widget.TextView time_display;
 
@@ -56,7 +57,11 @@ public class MainContentFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main_content, container, false);
     }
 
-
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setOnKeyBackPressedListener(this);
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -167,5 +172,12 @@ public class MainContentFragment extends Fragment {
             return String.valueOf(c);
         else
             return "0" + String.valueOf(c);
+    }
+
+    @Override
+    public void onBackKey() {
+        MainActivity activity = (MainActivity) getActivity();
+        activity.setOnKeyBackPressedListener(null);
+        activity.onBackPressed();
     }
 }
