@@ -18,7 +18,7 @@
             android:id="@+id/addChatterButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="대화상대 추가"
+            android:text="친구목록 동기화"
             android:background="@drawable/loginbuttontheme"/>
     </LinearLayout>
 

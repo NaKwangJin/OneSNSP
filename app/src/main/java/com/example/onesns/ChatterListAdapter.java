@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -44,8 +45,8 @@ public class ChatterListAdapter extends BaseAdapter {
 
         ChatterListItem item = this.items.get( position );
 
-        EditText nickEdit = v.findViewById(R.id.userNickBox);
-        EditText profileIDEdit = v.findViewById(R.id.profileIDBox);
+        TextView nickEdit = v.findViewById(R.id.userNickBox);
+        TextView profileIDEdit = v.findViewById(R.id.profileIDBox);
         ImageView profileImg = v.findViewById(R.id.profileImageBox);
 
         nickEdit.setText( item.getName() );
