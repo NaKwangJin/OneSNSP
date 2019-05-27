@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <ListView
+            android:id="@+id/chatRoomMessageList"
             android:layout_weight="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
@@ -18,12 +19,14 @@
             android:layout_height="50dp"
             android:orientation="horizontal">
             <EditText
+                android:id="@+id/messageSendBox"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:hint="Chat Here"
                 android:layout_weight="1"
                 android:background="@drawable/logintextbox"/>
             <Button
+                android:id="@+id/messageSendButton"
                 android:text="Send"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

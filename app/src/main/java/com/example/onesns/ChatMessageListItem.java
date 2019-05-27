@@ -4,12 +4,14 @@ public class ChatMessageListItem {
     private String message;
     private String date;
     private String nickID;
+    private Boolean isLeftSide;
     private int profileImgID;
 
-    public ChatMessageListItem(String message, String date, String nickID, int profileImgID) {
+    public ChatMessageListItem(String message, String date, String nickID,Boolean isLeftSide,int profileImgID) {
         this.message = message;
         this.date = date;
         this.nickID = nickID;
+        this.isLeftSide = isLeftSide;
         this.profileImgID = profileImgID;
     }
 
@@ -43,5 +45,13 @@ public class ChatMessageListItem {
 
     public void setProfileImgID(int profileImgID) {
         this.profileImgID = profileImgID;
+    }
+
+    public Boolean getLeftSide() {
+        return isLeftSide;
+    }
+
+    public void setLeftSide(Boolean leftSide) {
+        isLeftSide = leftSide;
     }
 }
