@@ -82,6 +82,10 @@ public class FindFriendFragment extends Fragment {
                             Intent broadInt = new Intent("UserFindBroadcast");
                             broadInt.putExtra("UserID",targetUserIDEdit.getText().toString());
                             cont.sendBroadcast(broadInt);
+
+                            // 친구 로컬 데이터베이스에 새로 찾은 친구 추가 //
+                            LocalDBManager dbManager = new LocalDBManager(cont);
+                            dbManager.insertFriendsInfo(targetUserIDEdit.getText().toString(),"NONE");
                         }
                     }
                 },1500);
