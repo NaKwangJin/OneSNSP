@@ -94,7 +94,7 @@ public class ChatListFragment extends Fragment implements MainActivity.onKeyBack
                                 chatdb.contains( otherID )){
                             // Nothing To Do //
                         }else{
-                            RESTManager restmng = new RESTManager(cont);
+                            /*RESTManager restmng = new RESTManager(cont);
                             restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
                             restmng.setMethod("GET");
                             restmng.putArgument("mode","addcmsg");
@@ -103,8 +103,15 @@ public class ChatListFragment extends Fragment implements MainActivity.onKeyBack
                             restmng.putArgument("mgn",EncryptionEncoder.encryptBase64(ownID));
                             restmng.putArgument("msg","");
                             restmng.putArgument("date","");
-                            restmng.execute();
+                            restmng.execute();*/
                         }
+
+                        SharedPreferences pref2 = cont.getSharedPreferences("TEMPOTHERID",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor prefEdit = pref2.edit();
+
+                        prefEdit.putString("OID",otherID);
+                        prefEdit.commit();
+
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new ChatRoomFragment(),"CHATROOMFRAGMENT").commit();
                     }
                 },2500);

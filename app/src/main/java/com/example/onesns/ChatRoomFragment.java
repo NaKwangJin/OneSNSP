@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,8 +26,8 @@ public class ChatRoomFragment extends Fragment{
     private ListView sendMsgList;
     private Context cont;
     private ServerMsgReceiver receiver;
-
-    private ChatMessageListAdapter msgListAdapter;
+    private String currentSessionUserID;
+    private String otherSessionUserID;
 
     public ChatRoomFragment() {
         // Required empty public constructor
@@ -55,18 +56,35 @@ public class ChatRoomFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         initComponents();
 
-        receiver = new ServerMsgReceiver();
-        receiver.start();
+        SharedPreferences pref = cont.getSharedPreferences("UserSession",cont.MODE_PRIVATE);
+        this.currentSessionUserID = pref.getString("UID","[NULLUSER]");
 
-        msgListAdapter = new ChatMessageListAdapter(cont);
-        sendMsgList.setAdapter(msgListAdapter);
+        SharedPreferences pref2 = cont.getSharedPreferences("TEMPOTHERID",Context.MODE_PRIVATE);
+        this.otherSessionUserID = pref2.getString("OID","[NULLUSER]");
+
+        ChatGlobal.msgListAdapter = new ChatMessageListAdapter(cont);
+        sendMsgList.setAdapter(ChatGlobal.msgListAdapter);
+
+        receiver = new ServerMsgReceiver();
+        receiver.setUserID(currentSessionUserID);
+        receiver.start();
 
         sendMsgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String msg = sendMsgBox.getText().toString();
-                msgListAdapter.addItem(new ChatMessageListItem(msg,"","",false,0));
-                msgListAdapter.notifyDataSetChanged();
+                RESTManager restmng = new RESTManager(cont);
+                restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
+                restmng.setMethod("GET");
+                restmng.putArgument("mode","addcmsg");
+                restmng.putArgument("id",currentSessionUserID);
+                restmng.putArgument("oid",otherSessionUserID);
+                restmng.putArgument("mgn",currentSessionUserID);
+                restmng.putArgument("msg",msg);
+                restmng.putArgument("date","");
+                restmng.execute();
+
+                ChatGlobal.msgListAdapter.notifyDataSetChanged();
             }
         });
 

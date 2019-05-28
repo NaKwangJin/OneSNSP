@@ -18,6 +18,10 @@ public class ChatMessageListAdapter extends BaseAdapter {
         this.cont = cont;
     }
 
+    public void removeAll(){
+        lists.clear();
+    }
+
     public void addItem( ChatMessageListItem item ){
         this.lists.add(item);
     }
@@ -41,33 +45,35 @@ public class ChatMessageListAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater)cont.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.chatmessagelist,parent,false);
 
-        ChatMessageListItem item = lists.get(position);
-        if( item.getLeftSide() ){
-            TextView rightMessageView = view.findViewById(R.id.rightMessageTipBox);
-            CardView cardView = view.findViewById(R.id.rightCardView);
+        if( lists.size() > 0 ){
+            ChatMessageListItem item = lists.get(position);
+            if( item.getLeftSide() ){
+                TextView rightMessageView = view.findViewById(R.id.rightMessageTipBox);
+                CardView cardView = view.findViewById(R.id.rightCardView);
 
-            rightMessageView.setVisibility(View.GONE);
-            cardView.setVisibility(View.GONE);
+                rightMessageView.setVisibility(View.GONE);
+                cardView.setVisibility(View.GONE);
 
-            TextView messageView = view.findViewById(R.id.messageTipBox);
-            messageView.setText(item.getMessage());
+                TextView messageView = view.findViewById(R.id.messageTipBox);
+                messageView.setText(item.getMessage());
 
-            float width = messageView.getTextSize() * item.getMessage().length();
-            messageView.getLayoutParams().width = (int)width;
-            messageView.requestLayout();
-        }else{
-            TextView leftMessageView = view.findViewById(R.id.messageTipBox);
-            CardView cardView = view.findViewById(R.id.cardView);
+                float width = messageView.getTextSize() * item.getMessage().length();
+                messageView.getLayoutParams().width = (int)width;
+                messageView.requestLayout();
+            }else{
+                TextView leftMessageView = view.findViewById(R.id.messageTipBox);
+                CardView cardView = view.findViewById(R.id.cardView);
 
-            leftMessageView.setVisibility(View.GONE);
-            cardView.setVisibility(View.GONE);
+                leftMessageView.setVisibility(View.GONE);
+                cardView.setVisibility(View.GONE);
 
-            TextView messageView = view.findViewById(R.id.rightMessageTipBox);
-            messageView.setText(item.getMessage());
+                TextView messageView = view.findViewById(R.id.rightMessageTipBox);
+                messageView.setText(item.getMessage());
 
-            float width = messageView.getTextSize() * item.getMessage().length();
-            messageView.getLayoutParams().width = (int)width;
-            messageView.requestLayout();
+                float width = messageView.getTextSize() * item.getMessage().length();
+                messageView.getLayoutParams().width = (int)width;
+                messageView.requestLayout();
+            }
         }
 
         return view;
