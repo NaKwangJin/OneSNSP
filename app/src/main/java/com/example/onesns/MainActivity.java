@@ -175,6 +175,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.closeDrawer(GravityCompat.START);
             } else if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                 Toast.makeText(this, "종료하려면 한번 더 누르세요", Toast.LENGTH_SHORT);
+            } else if (getSupportFragmentManager().findFragmentByTag("CHATROOMFRAGMENT") != null && getSupportFragmentManager().findFragmentByTag("CHATROOMFRAGMENT").isVisible()){
+                Intent broadInt = new Intent("OnChatRoomExit");
+                sendBroadcast(broadInt);
+                super.onBackPressed();
             } else {
                 super.onBackPressed();
             }

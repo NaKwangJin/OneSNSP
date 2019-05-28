@@ -2,10 +2,13 @@ package com.example.onesns;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.ListView;
 import com.example.onesns.dialog.NewChatterDialog;
 
 import java.util.Map;
+import java.util.StringTokenizer;
 
 public class ChatListFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
     private Button chatterAddBtn;
@@ -71,8 +75,39 @@ public class ChatListFragment extends Fragment implements MainActivity.onKeyBack
 
         chatterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new ChatRoomFragment()).commit();
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                final RESTManager restManager = new RESTManager(cont);
+                restManager.setURL("http://fght7100.dothome.co.kr/profile.php");
+                restManager.setMethod("GET");
+                restManager.putArgument("mode","lookcmsg");
+                restManager.execute();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        SharedPreferences pref = cont.getSharedPreferences("UserSession",cont.MODE_PRIVATE);
+                        String ownID = pref.getString("UID","++NONE--");
+                        String otherID = ((ChatterListItem)chatterListAdapter.getItem(position)).getName();
+                        String chatdb = RESTGlobal.result;
+                        if( chatdb.contains(ownID) &&
+                                chatdb.contains( otherID )){
+                            // Nothing To Do //
+                        }else{
+                            RESTManager restmng = new RESTManager(cont);
+                            restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
+                            restmng.setMethod("GET");
+                            restmng.putArgument("mode","addcmsg");
+                            restmng.putArgument("id",EncryptionEncoder.encryptBase64(ownID));
+                            restmng.putArgument("oid",EncryptionEncoder.encryptBase64(otherID));
+                            restmng.putArgument("mgn",EncryptionEncoder.encryptBase64(ownID));
+                            restmng.putArgument("msg","");
+                            restmng.putArgument("date","");
+                            restmng.execute();
+                        }
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new ChatRoomFragment(),"CHATROOMFRAGMENT").commit();
+                    }
+                },2500);
             }
         });
     }

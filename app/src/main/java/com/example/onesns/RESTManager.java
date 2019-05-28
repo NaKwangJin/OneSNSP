@@ -2,6 +2,7 @@ package com.example.onesns;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Debug;
 import android.util.Log;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class
-RESTManager extends AsyncTask<Void,Void,String> {
+RESTManager extends AsyncTask<Void,Void,String>{
     private Map<String,String> keyvalue = new HashMap<String,String>();
     private String urladdr = "";
     private String method = "";
@@ -40,7 +41,7 @@ RESTManager extends AsyncTask<Void,Void,String> {
     }
 
     @Override
-    protected String doInBackground(Void... voids) {
+    protected String doInBackground(Void... voids){
         try{
             urladdr = urladdr + "?";
             for( String key : keyvalue.keySet() ){
@@ -81,6 +82,22 @@ RESTManager extends AsyncTask<Void,Void,String> {
             Toast.makeText(cont,"회원이 아닙니다.",Toast.LENGTH_LONG).show();
         }
         if( s.contains("\"exists\":true") ){
+            SharedPreferences sp = cont.getSharedPreferences( "UserSession",cont.MODE_PRIVATE );
+            SharedPreferences.Editor spe = sp.edit();
+
+            if( this.keyvalue.get("id") != "" && this.keyvalue.get("id") != null ){
+                spe.putString("UID",DecryptionDecoder.decryptBase64(this.keyvalue.get("id")));
+            }
+
+            JSONParser parser = new JSONParser();
+            String email = parser.parse(s,"email");
+
+            if( email != "" && email != null ){
+                spe.putString("UEMAIL",DecryptionDecoder.decryptBase64(email));
+            }
+
+            spe.commit();
+
             Intent i = new Intent(cont,MainActivity.class);
             cont.startActivity(i);
         }
