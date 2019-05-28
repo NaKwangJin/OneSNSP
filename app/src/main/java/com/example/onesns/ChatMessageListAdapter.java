@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class ChatMessageListAdapter extends BaseAdapter {
@@ -50,12 +52,17 @@ public class ChatMessageListAdapter extends BaseAdapter {
             if( item.getLeftSide() ){
                 TextView rightMessageView = view.findViewById(R.id.rightMessageTipBox);
                 CardView cardView = view.findViewById(R.id.rightCardView);
+                TextView rightNickView = view.findViewById(R.id.rightNickBox);
 
                 rightMessageView.setVisibility(View.GONE);
                 cardView.setVisibility(View.GONE);
+                rightNickView.setVisibility(View.GONE);
 
                 TextView messageView = view.findViewById(R.id.messageTipBox);
                 messageView.setText(item.getMessage());
+
+                TextView nickView = view.findViewById(R.id.nickBox);
+                nickView.setText(item.getNickID());
 
                 float width = messageView.getTextSize() * item.getMessage().length();
                 messageView.getLayoutParams().width = (int)width;
@@ -63,12 +70,17 @@ public class ChatMessageListAdapter extends BaseAdapter {
             }else{
                 TextView leftMessageView = view.findViewById(R.id.messageTipBox);
                 CardView cardView = view.findViewById(R.id.cardView);
+                TextView nickView = view.findViewById(R.id.nickBox);
 
                 leftMessageView.setVisibility(View.GONE);
                 cardView.setVisibility(View.GONE);
+                nickView.setVisibility(View.GONE);
 
                 TextView messageView = view.findViewById(R.id.rightMessageTipBox);
                 messageView.setText(item.getMessage());
+
+                TextView rightNickView = view.findViewById(R.id.rightNickBox);
+                rightNickView.setText(item.getNickID());
 
                 float width = messageView.getTextSize() * item.getMessage().length();
                 messageView.getLayoutParams().width = (int)width;

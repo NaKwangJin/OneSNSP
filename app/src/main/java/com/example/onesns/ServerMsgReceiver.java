@@ -69,7 +69,7 @@ public class ServerMsgReceiver extends Thread{
                 }
 
                 httpConn.disconnect();
-                Thread.sleep(3000);
+                Thread.sleep(800);
             }catch(Exception e){
 
             }
