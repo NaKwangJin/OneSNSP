@@ -3,6 +3,7 @@ package com.example.onesns.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -65,7 +66,7 @@ public class CalenderDialog extends Dialog {
         this.calclook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(cont, "일정보기", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(cont, "일정보기", Toast.LENGTH_SHORT).show();
                 intent = new Intent(cont, CalenderContents.class);
                 cont.startActivity(intent);
 
@@ -77,16 +78,19 @@ public class CalenderDialog extends Dialog {
             public void onClick(View v) {
                 String calcText = calcAddText.getText().toString();
 
+                // 현재 세션의 유저ID 가져오기 //
+                SharedPreferences pref = cont.getSharedPreferences("UserSession",Context.MODE_PRIVATE);
+                String currentSessionID = pref.getString("UID","[NULLUSER]");
                 RESTManager manager = new RESTManager(cont);
                 manager.setURL("http://fght7100.dothome.co.kr/profile.php");
                 manager.setMethod("GET");
                 manager.putArgument("mode", "addcal");
-                manager.putArgument("id", EncryptionEncoder.encryptBase64("rdt419"));
+                manager.putArgument("id", EncryptionEncoder.encryptBase64(currentSessionID));
                 manager.putArgument("cdate", passedDate);
                 manager.putArgument("ctodo", calcText);
 
                 manager.execute();
-                Toast.makeText(cont, "일정추가", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(cont, "일정추가", Toast.LENGTH_SHORT).show();
 
                 dismiss();
             }
