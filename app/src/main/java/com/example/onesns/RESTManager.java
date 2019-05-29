@@ -87,6 +87,10 @@ RESTManager extends AsyncTask<Void,Void,String>{
                 spe.putString("UID",DecryptionDecoder.decryptBase64(this.keyvalue.get("id")));
             }
 
+            if( this.keyvalue.get("pw") != "" && this.keyvalue.get("pw") != null ){
+                spe.putString("UPW",this.keyvalue.get("pw"));
+            }
+
             JSONParser parser = new JSONParser();
             String email = parser.parse(s,"email");
 

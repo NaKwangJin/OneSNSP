@@ -19,14 +19,21 @@
         android:orientation="vertical"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:paddingTop="160dp"
+        android:paddingTop="100dp"
         android:paddingBottom="80dp">
+
+        <CheckBox
+            android:id="@+id/autoLoginCheck"
+            android:text="자동로그인"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/LoginIDBox"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/logintextbox"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:hint="  User ID"/>
         <EditText
