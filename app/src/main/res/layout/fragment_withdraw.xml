@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WithdrawFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="220dp"
+        android:paddingBottom="80dp">
+
+        <EditText
+            android:id="@+id/WithdrawIDBox"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/logintextbox"
+            android:layout_marginBottom="10dp"
+            android:hint="  User ID"/>
+        <EditText
+            android:id="@+id/WithdrawPWBox"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/logintextbox"
+            android:inputType="textPassword"
+            android:hint="  Password"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/loginbuttontheme"
+            android:fontFamily="@font/busanfont"
+            android:text="Withdraw"
+            android:textColor="#FF7FE9"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:id="@+id/WithdrawBtn"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+
+</FrameLayout>

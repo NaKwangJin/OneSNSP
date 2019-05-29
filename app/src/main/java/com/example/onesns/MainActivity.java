@@ -98,6 +98,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .addToBackStack(null)
                         .commit();
                 break;
+            case R.id.item5:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,new WithdrawFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);
