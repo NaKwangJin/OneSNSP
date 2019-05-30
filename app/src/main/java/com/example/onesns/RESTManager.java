@@ -65,10 +65,6 @@ RESTManager extends AsyncTask<Void,Void,String>{
             output = builder.toString();
         }catch(Exception e){
             e.printStackTrace();
-        }finally {
-            if( httpConn != null ){
-                httpConn.disconnect();
-            }
         }
         return output;
     }
@@ -77,6 +73,8 @@ RESTManager extends AsyncTask<Void,Void,String>{
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         RESTGlobal.result = s;
+        // 실행이 완료된 상태에서 HTTP 연결을 끊어야 Unexpected end of Stream 오류가 발생하지않음 //
+        httpConn.disconnect();
         // Check if this ID is our member or not //
         if( s.contains("\"exists\":false") ){
             Toast.makeText(cont,"회원이 아닙니다.",Toast.LENGTH_LONG).show();
@@ -87,6 +85,10 @@ RESTManager extends AsyncTask<Void,Void,String>{
 
             if( this.keyvalue.get("id") != "" && this.keyvalue.get("id") != null ){
                 spe.putString("UID",DecryptionDecoder.decryptBase64(this.keyvalue.get("id")));
+            }
+
+            if( this.keyvalue.get("pw") != "" && this.keyvalue.get("pw") != null ){
+                spe.putString("UPW",this.keyvalue.get("pw"));
             }
 
             JSONParser parser = new JSONParser();

@@ -2,6 +2,7 @@ package com.example.onesns;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -32,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private Context cont;
     private ImageButton kakaoLoginBtn;
     private LoginButton facebookLoginBtn;
+    private CheckBox autoLoginCheckBox;
 
     private FacebookLoginCallback facebookLoginCallback;
     private CallbackManager facebookCallbackManager;
@@ -43,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         loginPWBox = (EditText)findViewById(R.id.LoginPWBox);
         kakaoLoginBtn = (ImageButton)findViewById(R.id.btn_kakao_login);
         facebookLoginBtn = (LoginButton)findViewById(R.id.facebookLoginButton);
+        autoLoginCheckBox = (CheckBox)findViewById(R.id.autoLoginCheck);
     }
 
     private void InitLoginAPIs(){
@@ -69,6 +74,20 @@ public class LoginActivity extends AppCompatActivity {
 
         InitComponents();
         InitLoginAPIs();
+
+        SharedPreferences pref = cont.getSharedPreferences("AutoLogin",MODE_PRIVATE);
+        autoLoginCheckBox.setChecked(pref.getBoolean("isAutoLoginChecked",false));
+
+        autoLoginCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences pref = cont.getSharedPreferences("AutoLogin",MODE_PRIVATE);
+                SharedPreferences.Editor prefEdit = pref.edit();
+
+                prefEdit.putBoolean("isAutoLoginChecked",isChecked);
+                prefEdit.commit();
+            }
+        });
 
         gotoRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +125,21 @@ public class LoginActivity extends AppCompatActivity {
                 session.open(AuthType.KAKAO_LOGIN_ALL,LoginActivity.this);
             }
         });
+
+        if( autoLoginCheckBox.isChecked() ){
+            // Get UserSessionInfo //
+            SharedPreferences sessionpref = cont.getSharedPreferences("UserSession",MODE_PRIVATE);
+            // Using REST API Manager For Using User Login DB//
+            RESTManager restmng = new RESTManager(cont);
+            restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
+            restmng.setMethod("GET");
+            restmng.putArgument("mode","login");
+            //restmng.putArgument("id",loginIDBox.getText().toString());
+            restmng.putArgument("id",EncryptionEncoder.encryptBase64(sessionpref.getString("UID","[NULLID]")));
+            //restmng.putArgument("pw",loginPWBox.getText().toString());
+            restmng.putArgument("pw",sessionpref.getString("UPW","[NULLPW]"));
+            restmng.execute();
+        }
 
     }
 }
