@@ -13,10 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
+import com.bumptech.glide.Glide;
 
 import java.util.Calendar;
 
@@ -27,6 +30,10 @@ import java.util.Calendar;
 public class MainContentFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
     private android.widget.TextView date_display;
     private android.widget.TextView time_display;
+    private ImageView friend;
+    private ImageView chat;
+    private ImageView search;
+    private ImageView calendar;
 
     // 시간 관련
     private int mYear;
@@ -36,7 +43,7 @@ public class MainContentFragment extends Fragment implements MainActivity.onKeyB
     private int mMinute;
     private int mSecond;
 
-    LinearLayout linear1, linear2, linear3, linear4, linear5;
+//    Button linear1, linear2, linear3, linear4;
 
     static final int DATE_DIALOG_ID = 0;
     static final int TIME_DIALOG_ID = 0;
@@ -70,11 +77,19 @@ public class MainContentFragment extends Fragment implements MainActivity.onKeyB
         this.time_display = (TextView)view.findViewById(R.id.tv2);
         this.date_display = (TextView) view.findViewById(R.id.tv1);
 
-        this.linear1 = view.findViewById(R.id.l_button_1);
-        this.linear2 = view.findViewById(R.id.l_button_2);
-        this.linear3 = view.findViewById(R.id.l_button_3);
-        this.linear4 = view.findViewById(R.id.l_button_4);
-        //this.linear5 = view.findViewById(R.id.l_button_5);
+        friend = (ImageView)view.findViewById(R.id.friendContentbtn);
+        chat = (ImageView)view.findViewById(R.id.chatContent);
+        search = (ImageView)view.findViewById(R.id.searchContent);
+        calendar = (ImageView)view.findViewById(R.id.calendarContent);
+
+
+
+//      linear1 = (Button) view.findViewById(R.id.l_button_1);
+//      linear2 = (Button)vi
+//      ew.findViewById(R.id.l_button_2);
+//        linear3 = (Button)view.findViewById(R.id.l_button_3);
+//        linear4 = (Button)view.findViewById(R.id.l_button_4);
+//        this.linear5 = view.findViewById(R.id.l_button_5);
 
         // calendar 에서 받아왔음
         final Calendar c = Calendar.getInstance();
@@ -93,7 +108,63 @@ public class MainContentFragment extends Fragment implements MainActivity.onKeyB
             }
         };
         mHandler.postDelayed(r, 1000);
-        layoutClickSet();
+
+        friendbtn(friend);
+        chatBtn(chat);
+        searchBtn(search);
+        calendarBtn(calendar);
+
+
+
+    }
+
+    public void friendbtn(View view) {
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        requireActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container, new FriendRecyclerView())
+                                .commit();
+
+                    }
+                });
+
+
+    }
+
+    public void chatBtn(View view) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new ChatListFragment())
+                        .commit();
+            }
+        });
+
+    }
+
+    public void searchBtn(View view) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new FindFriendFragment())
+                        .commit();
+            }
+        });
+
+    }
+    public void calendarBtn(View view) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new CalenderActivity())
+                        .commit();
+            }
+        });
+
     }
 
     // 날짜와 시간 업데이트
@@ -122,50 +193,10 @@ public class MainContentFragment extends Fragment implements MainActivity.onKeyB
         mHandler.postDelayed(r, 1000);
     }
 
-    private void layoutClickSet() {
-        linear1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, new FriendRecyclerView())
-                        .commit();
-            }
-        });
 
-        linear2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, new ChatListFragment())
-                        .commit();
-            }
-        });
 
-        linear3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, new FindFriendFragment())
-                        .commit();
-            }
-        });
 
-        linear4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, new CalenderActivity())
-                        .commit();
-            }
-        });
 
-//        linear5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // TODO
-//            }
-//        });
-    }
 
     private static String pad(int c) {
         if (c >= 10)
@@ -180,4 +211,6 @@ public class MainContentFragment extends Fragment implements MainActivity.onKeyB
         activity.setOnKeyBackPressedListener(null);
         activity.onBackPressed();
     }
+
+
 }

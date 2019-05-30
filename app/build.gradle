@@ -42,5 +42,6 @@ dependencies {
             version: project.KAKAO_SDK_VERSION
 
     implementation 'com.facebook.android:facebook-android-sdk:4.+'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
 }
 apply plugin: 'com.google.gms.google-services'
