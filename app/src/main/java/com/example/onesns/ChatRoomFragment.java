@@ -85,6 +85,7 @@ public class ChatRoomFragment extends Fragment{
 
                 ChatGlobal.msgListAdapter.notifyDataSetChanged();
                 // 전송( Send ) 버튼을 누르면 자동으로 입력란 지워주는 코드 //
+
                 sendMsgBox.setText("");
             }
         });

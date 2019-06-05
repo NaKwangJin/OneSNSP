@@ -74,8 +74,8 @@ public class MainContentFragment extends Fragment implements MainActivity.onKeyB
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        this.time_display = (TextView)view.findViewById(R.id.tv2);
-        this.date_display = (TextView) view.findViewById(R.id.tv1);
+//        this.time_display = (TextView)view.findViewById(R.id.tv2);
+//        this.date_display = (TextView) view.findViewById(R.id.tv1);
 
         friend = (ImageView)view.findViewById(R.id.friendContentbtn);
         chat = (ImageView)view.findViewById(R.id.chatContent);
@@ -92,22 +92,22 @@ public class MainContentFragment extends Fragment implements MainActivity.onKeyB
 //        this.linear5 = view.findViewById(R.id.l_button_5);
 
         // calendar 에서 받아왔음
-        final Calendar c = Calendar.getInstance();
-        mYear  = c.get(Calendar.YEAR);
-        mMonth  = c.get(Calendar.MONTH);
-        mDay  = c.get(Calendar.DAY_OF_MONTH);
-        mHour  = c.get(Calendar.HOUR_OF_DAY);
-        mMinute = c.get(Calendar.MINUTE);
-        mSecond = c.get(Calendar.SECOND);
+//        final Calendar c = Calendar.getInstance();
+//        mYear  = c.get(Calendar.YEAR);
+//        mMonth  = c.get(Calendar.MONTH);
+//        mDay  = c.get(Calendar.DAY_OF_MONTH);
+//        mHour  = c.get(Calendar.HOUR_OF_DAY);
+//        mMinute = c.get(Calendar.MINUTE);
+//        mSecond = c.get(Calendar.SECOND);
         // 핸들러
-        mHandler = new Handler();
-        r = new Runnable() {
-            @Override
-            public void run() {
-                updateDisplay();
-            }
-        };
-        mHandler.postDelayed(r, 1000);
+//        mHandler = new Handler();
+//        r = new Runnable() {
+//            @Override
+//            public void run() {
+//                updateDisplay();
+//            }
+//        };
+//        mHandler.postDelayed(r, 1000);
 
         friendbtn(friend);
         chatBtn(chat);
@@ -168,30 +168,30 @@ public class MainContentFragment extends Fragment implements MainActivity.onKeyB
     }
 
     // 날짜와 시간 업데이트
-    private void updateDisplay() {
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-        mHour = c.get(Calendar.HOUR_OF_DAY);
-        mMinute = c.get(Calendar.MINUTE);
-        mSecond = c.get(Calendar.SECOND);
+//    private void updateDisplay() {
+//        final Calendar c = Calendar.getInstance();
+//        mYear = c.get(Calendar.YEAR);
+//        mMonth = c.get(Calendar.MONTH);
+//        mDay = c.get(Calendar.DAY_OF_MONTH);
+//        mHour = c.get(Calendar.HOUR_OF_DAY);
+//        mMinute = c.get(Calendar.MINUTE);
+//        mSecond = c.get(Calendar.SECOND);
 
         // 날짜
-        date_display.setText(
-                new StringBuilder()
-                        .append(mYear).append("-0")
-                        .append(mMonth + 1).append("-0")
-                        .append(mDay).append(" "));
-        // 시간
-        time_display.setText(
-                new StringBuilder()
-                        .append(pad(mHour)).append(":")
-                        .append(pad(mMinute)).append(":")
-                        .append(pad(mSecond)));
+//        date_display.setText(
+//                new StringBuilder()
+//                        .append(mYear).append("-0")
+//                        .append(mMonth + 1).append("-0")
+//                        .append(mDay).append(" "));
+//        // 시간
+//        time_display.setText(
+//                new StringBuilder()
+//                        .append(pad(mHour)).append(":")
+//                        .append(pad(mMinute)).append(":")
+//                        .append(pad(mSecond)));
         // 1초당 업데이트
-        mHandler.postDelayed(r, 1000);
-    }
+//        mHandler.postDelayed(r, 1000);
+//    }
 
 
 

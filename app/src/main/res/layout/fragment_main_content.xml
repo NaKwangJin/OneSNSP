@@ -228,26 +228,25 @@
         <LinearLayout
             android:layout_width="388dp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
 
-            <TextView
-                android:id="@+id/tv1"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="0dp"
                 android:layout_weight="1"
-                android:hint="date"
-                android:textSize="20pt" />
-
+                android:layout_height="match_parent"
+                android:src="@drawable/logo"
+                />
             <TextView
-                android:id="@+id/tv2"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:hint="time"
-                android:textSize="14pt" />
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="match_parent"
+                android:text="This is advertising spot"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
