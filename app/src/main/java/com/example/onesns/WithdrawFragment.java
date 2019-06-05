@@ -18,7 +18,6 @@ public class WithdrawFragment extends Fragment {
     private Button widBtn;
     private EditText widID;
     private EditText widPW;
-    private Context cont;
 
     public WithdrawFragment() {
         // Required empty public constructor
@@ -51,7 +50,7 @@ public class WithdrawFragment extends Fragment {
         this.widBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RESTManager restmng = new RESTManager(cont);
+                RESTManager restmng = new RESTManager(requireContext());
                 restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
                 restmng.setMethod("GET");
                 restmng.putArgument("mode","withdraw");
@@ -59,17 +58,10 @@ public class WithdrawFragment extends Fragment {
                 restmng.putArgument("pw",EncryptionEncoder.encryptMD5(widPW.getText().toString()));
                 restmng.execute();
 
-                Intent intent = new Intent(cont,LoginActivity.class);
-                cont.startActivity(intent);
+                Intent intent = new Intent(requireContext(),LoginActivity.class);
+                requireContext().startActivity(intent);
                 getActivity().finish();
             }
         });
     }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        this.cont = context;
-    }
-
 }

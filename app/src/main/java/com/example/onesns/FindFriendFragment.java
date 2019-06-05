@@ -24,7 +24,6 @@ public class FindFriendFragment extends Fragment {
     private Button findQueryButton;
     private RESTManager restManager;
     private Handler handler;
-    private Context cont;
     public FindFriendFragment() {
         // Required empty public constructor
     }
@@ -41,11 +40,6 @@ public class FindFriendFragment extends Fragment {
         findQueryButton = (Button)getView().findViewById(R.id.putFindQueryButton);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        this.cont = context;
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -76,15 +70,15 @@ public class FindFriendFragment extends Fragment {
                         }
                         int val = ids.indexOf(targetUserIDEdit.getText().toString());
                         if( val == -1 ){
-                            Toast.makeText(cont,"친구를 찾을 수 없습니다.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(),"친구를 찾을 수 없습니다.",Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(cont,"친구를 찾았습니다.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(),"친구를 찾았습니다.",Toast.LENGTH_SHORT).show();
                             Intent broadInt = new Intent("UserFindBroadcast");
                             broadInt.putExtra("UserID",targetUserIDEdit.getText().toString());
-                            cont.sendBroadcast(broadInt);
+                            requireContext().sendBroadcast(broadInt);
 
                             // 친구 로컬 데이터베이스에 새로 찾은 친구 추가 //
-                            LocalDBManager dbManager = new LocalDBManager(cont);
+                            LocalDBManager dbManager = new LocalDBManager(requireContext());
                             dbManager.insertFriendsInfo(targetUserIDEdit.getText().toString(),"NONE");
                         }
                     }

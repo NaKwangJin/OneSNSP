@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button gotoLoginBtn;
     private EditText loginIDBox;
     private EditText loginPWBox;
-    private Context cont;
     private ImageButton kakaoLoginBtn;
     private LoginButton facebookLoginBtn;
     private CheckBox autoLoginCheckBox;
@@ -52,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void InitLoginAPIs(){
         facebookCallbackManager = CallbackManager.Factory.create();
-        facebookLoginCallback = new FacebookLoginCallback(cont);
+        facebookLoginCallback = new FacebookLoginCallback(getApplicationContext());
         facebookLoginBtn.setReadPermissions(Arrays.asList("public_profile","email"));
         facebookLoginBtn.registerCallback(facebookCallbackManager,facebookLoginCallback);
     }
@@ -68,20 +67,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        cont = this;
-
-        Log.e("DebugKeyHash",EncryptionEncoder.getHashKey(cont));
+        Log.e("DebugKeyHash",EncryptionEncoder.getHashKey(getApplicationContext()));
 
         InitComponents();
         InitLoginAPIs();
 
-        SharedPreferences pref = cont.getSharedPreferences("AutoLogin",MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AutoLogin",MODE_PRIVATE);
         autoLoginCheckBox.setChecked(pref.getBoolean("isAutoLoginChecked",false));
 
         autoLoginCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences pref = cont.getSharedPreferences("AutoLogin",MODE_PRIVATE);
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("AutoLogin",MODE_PRIVATE);
                 SharedPreferences.Editor prefEdit = pref.edit();
 
                 prefEdit.putBoolean("isAutoLoginChecked",isChecked);
@@ -92,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         gotoRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(cont,RegisterActivity.class);
+                Intent i = new Intent(getApplicationContext(),RegisterActivity.class);
                 startActivity(i);
             }
         });
@@ -102,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Using REST API Manager For Using User Login DB//
-                RESTManager restmng = new RESTManager(cont);
+                RESTManager restmng = new RESTManager(getApplicationContext());
                 restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
                 restmng.setMethod("GET");
                 restmng.putArgument("mode","login");
@@ -121,16 +118,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Session session = com.kakao.auth.Session.getCurrentSession();
-                session.addCallback(new KakaoSessionCallback(cont));
+                session.addCallback(new KakaoSessionCallback(getApplicationContext()));
                 session.open(AuthType.KAKAO_LOGIN_ALL,LoginActivity.this);
             }
         });
 
         if( autoLoginCheckBox.isChecked() ){
             // Get UserSessionInfo //
-            SharedPreferences sessionpref = cont.getSharedPreferences("UserSession",MODE_PRIVATE);
+            SharedPreferences sessionpref = getApplicationContext().getSharedPreferences("UserSession",MODE_PRIVATE);
             // Using REST API Manager For Using User Login DB//
-            RESTManager restmng = new RESTManager(cont);
+            RESTManager restmng = new RESTManager(getApplicationContext());
             restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
             restmng.setMethod("GET");
             restmng.putArgument("mode","login");

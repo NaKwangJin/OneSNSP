@@ -19,7 +19,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText profilePhotoPicker;
     private Button regOkBtn;
     private Button regCancelBtn;
-    private Context cont;
 
     private void InitComponent(){
         newIDText = (EditText)findViewById(R.id.newIDBox);
@@ -35,15 +34,13 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        cont = this;
-
         InitComponent();
 
         birthPicker.setFocusableInTouchMode(false);
         birthPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog dateDialog = new DatePickerDialog(cont, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dateDialog = new DatePickerDialog(getApplicationContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         birthPicker.setText(year + "/" + month + "/" + dayOfMonth);
@@ -57,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         profilePhotoPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(cont,FileBrowserActivity.class);
+                Intent i = new Intent(getApplicationContext(),FileBrowserActivity.class);
                 startActivity(i);
             }
         });
@@ -65,14 +62,14 @@ public class RegisterActivity extends AppCompatActivity {
         regOkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RESTManager restmng = new RESTManager(cont);
+                RESTManager restmng = new RESTManager(getApplicationContext());
                 restmng.setMethod("GET");
                 restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
                 restmng.putArgument("mode","reg");
 
                 if(newIDText.getText().toString().equals("") || newPWText.getText().toString().equals("") ||
                         newEmailText.getText().toString().equals("")){
-                    Toast.makeText(cont, "필수정보를 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "필수정보를 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }else {
                     restmng.putArgument("id", EncryptionEncoder.encryptBase64(newIDText.getText().toString()));
                     restmng.putArgument("pw", EncryptionEncoder.encryptMD5(newPWText.getText().toString()));

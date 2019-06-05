@@ -9,20 +9,17 @@ import android.view.WindowManager;
 
 public class LoadingActivity extends AppCompatActivity {
     private Handler handler;
-    private Context cont;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_loading);
 
-        cont = this;
-
         handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(cont,LoginActivity.class);
+                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(i);
                 finish();
             }

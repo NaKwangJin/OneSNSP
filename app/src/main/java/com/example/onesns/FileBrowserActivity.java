@@ -16,7 +16,6 @@ import java.util.Vector;
 public class FileBrowserActivity extends AppCompatActivity {
     private FileDialogAdapter fileListAdapter;
     private ListView fileList;
-    private Context cont;
     private String rootpath;
     private Vector<String> curpath;
     private File curfile;
@@ -41,8 +40,7 @@ public class FileBrowserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_browser);
 
-        cont = this;
-        fileListAdapter = new FileDialogAdapter(cont);
+        fileListAdapter = new FileDialogAdapter(getApplicationContext());
         curpath = new Vector<String>(5);
 
         InitComponents();

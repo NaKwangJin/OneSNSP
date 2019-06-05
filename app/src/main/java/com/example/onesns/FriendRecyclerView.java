@@ -25,7 +25,6 @@ import java.util.StringTokenizer;
 
 public class FriendRecyclerView extends Fragment implements FriendRecyclerAdapter.MyRecyclerViewClickListener {
 
-    private Context cont;
     private List<FriendRecyclerItem> dataList;
 
     public FriendRecyclerView(){
@@ -39,11 +38,6 @@ public class FriendRecyclerView extends Fragment implements FriendRecyclerAdapte
 
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        this.cont = context;
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) { //activity onCreated부분
@@ -59,7 +53,7 @@ public class FriendRecyclerView extends Fragment implements FriendRecyclerAdapte
         }*/
 
         // 로컬 친구 데이터베이스에서 목록 조회 .. //
-        LocalDBManager dbManager = new LocalDBManager(this.cont);
+        LocalDBManager dbManager = new LocalDBManager(requireContext());
         Map<String,String> friends = dbManager.selectAllFriends();
 
         for( String key : friends.keySet()){

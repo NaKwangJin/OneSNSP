@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView userInfoEmailView;
 
     private Button logoutBtn;
-    private Context cont;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -47,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        cont = this;
 
         initLayout();
 
@@ -147,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LogoutDialog logoutDialog = new LogoutDialog(cont, "");
+                LogoutDialog logoutDialog = new LogoutDialog(getApplicationContext(), "");
                 logoutDialog.show();
             }
         });
@@ -169,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userInfoNameView = navView.findViewById(R.id.userInfoName);
         userInfoEmailView = navView.findViewById(R.id.userInfoEmail);
 
-        SharedPreferences sp = cont.getSharedPreferences("UserSession",MODE_PRIVATE);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("UserSession",MODE_PRIVATE);
         userInfoNameView.setText(sp.getString("UID","{UNKNOWN}"));
         userInfoEmailView.setText(sp.getString("UEMAIL","{UNKNOWN}"));
 

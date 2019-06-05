@@ -25,7 +25,6 @@ public class ChatListFragment extends Fragment implements MainActivity.onKeyBack
     private Button chatterAddBtn;
     private ListView chatterList;
     private ChatterListAdapter chatterListAdapter;
-    private Context cont;
 
     public ChatListFragment() {
         // Required empty public constructor
@@ -43,7 +42,6 @@ public class ChatListFragment extends Fragment implements MainActivity.onKeyBack
     public void onAttach(Context context) {
         super.onAttach(context);
         ((MainActivity)context).setOnKeyBackPressedListener(this);
-        this.cont = context;
     }
 
     private void InitComponents(){
@@ -63,7 +61,7 @@ public class ChatListFragment extends Fragment implements MainActivity.onKeyBack
             @Override
             public void onClick(View v) {
                 // 친구목록 동기화를 위해 데이터베이스로 부터 정보 추출 //
-                LocalDBManager dbManager = new LocalDBManager(cont);
+                LocalDBManager dbManager = new LocalDBManager(requireContext());
                 Map<String,String> friends = dbManager.selectAllFriends();
 
                 for( String key : friends.keySet()){
@@ -76,7 +74,7 @@ public class ChatListFragment extends Fragment implements MainActivity.onKeyBack
         chatterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                final RESTManager restManager = new RESTManager(cont);
+                final RESTManager restManager = new RESTManager(requireContext());
                 restManager.setURL("http://fght7100.dothome.co.kr/profile.php");
                 restManager.setMethod("GET");
                 restManager.putArgument("mode","lookcmsg");
@@ -86,7 +84,7 @@ public class ChatListFragment extends Fragment implements MainActivity.onKeyBack
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        SharedPreferences pref = cont.getSharedPreferences("UserSession",cont.MODE_PRIVATE);
+                        SharedPreferences pref = requireContext().getSharedPreferences("UserSession",requireContext().MODE_PRIVATE);
                         String ownID = pref.getString("UID","++NONE--");
                         String otherID = ((ChatterListItem)chatterListAdapter.getItem(position)).getName();
                         String chatdb = RESTGlobal.result;
@@ -106,7 +104,7 @@ public class ChatListFragment extends Fragment implements MainActivity.onKeyBack
                             restmng.execute();*/
                         }
 
-                        SharedPreferences pref2 = cont.getSharedPreferences("TEMPOTHERID",Context.MODE_PRIVATE);
+                        SharedPreferences pref2 = requireContext().getSharedPreferences("TEMPOTHERID",Context.MODE_PRIVATE);
                         SharedPreferences.Editor prefEdit = pref2.edit();
 
                         prefEdit.putString("OID",otherID);
