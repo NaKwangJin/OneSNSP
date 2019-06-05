@@ -24,7 +24,6 @@ public class ChatRoomFragment extends Fragment{
     private Button sendMsgBtn;
     private EditText sendMsgBox;
     private ListView sendMsgList;
-    private Context cont;
     private ServerMsgReceiver receiver;
     private String currentSessionUserID;
     private String otherSessionUserID;
@@ -56,13 +55,13 @@ public class ChatRoomFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         initComponents();
 
-        SharedPreferences pref = cont.getSharedPreferences("UserSession",cont.MODE_PRIVATE);
+        SharedPreferences pref = requireContext().getSharedPreferences("UserSession",requireContext().MODE_PRIVATE);
         this.currentSessionUserID = pref.getString("UID","[NULLUSER]");
 
-        SharedPreferences pref2 = cont.getSharedPreferences("TEMPOTHERID",Context.MODE_PRIVATE);
+        SharedPreferences pref2 = requireContext().getSharedPreferences("TEMPOTHERID",Context.MODE_PRIVATE);
         this.otherSessionUserID = pref2.getString("OID","[NULLUSER]");
 
-        ChatGlobal.msgListAdapter = new ChatMessageListAdapter(cont);
+        ChatGlobal.msgListAdapter = new ChatMessageListAdapter(requireContext());
         sendMsgList.setAdapter(ChatGlobal.msgListAdapter);
 
         receiver = new ServerMsgReceiver();
@@ -73,7 +72,7 @@ public class ChatRoomFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 String msg = sendMsgBox.getText().toString();
-                RESTManager restmng = new RESTManager(cont);
+                RESTManager restmng = new RESTManager(requireContext());
                 restmng.setURL("http://fght7100.dothome.co.kr/profile.php");
                 restmng.setMethod("GET");
                 restmng.putArgument("mode","addcmsg");
@@ -101,13 +100,12 @@ public class ChatRoomFragment extends Fragment{
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("OnChatRoomExit");
-        cont.registerReceiver(receiver,intentFilter);
+        requireContext().registerReceiver(receiver,intentFilter);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        cont = context;
     }
 
     @Override
@@ -115,6 +113,12 @@ public class ChatRoomFragment extends Fragment{
         super.onPause();
         this.receiver.setStop(true);
     }
+
+//    @Override
+//    public void onDestroyView() {
+//        stopServerWatchDogs();
+//        super.onDestroyView();
+//    }
 
     public void stopServerWatchDogs(){
         this.receiver.setStop(true);
