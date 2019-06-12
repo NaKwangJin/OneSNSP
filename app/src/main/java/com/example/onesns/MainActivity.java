@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LogoutDialog logoutDialog = new LogoutDialog(getApplicationContext(), "");
+                LogoutDialog logoutDialog = new LogoutDialog(MainActivity.this, "");
                 logoutDialog.show();
             }
         });

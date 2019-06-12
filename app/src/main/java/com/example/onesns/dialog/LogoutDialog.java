@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.onesns.LoadingActivity;
 import com.example.onesns.LoginActivity;
 import com.example.onesns.R;
 
@@ -41,7 +42,7 @@ public class LogoutDialog extends Dialog {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(cont, LoginActivity.class);
+                Intent intent = new Intent(cont, LoadingActivity.class);
                 cont.startActivity(intent);
             }
         });
